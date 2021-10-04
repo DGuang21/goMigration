@@ -8,13 +8,15 @@ type migrationCreatePowerTableInterface struct {}
 
 func init() {
 	export := migrationCreatePowerTableInterface{}
-	migration.RegisterMigration(export.Up,export.Down)
+	migration.RegisterMigration(export.Up,export.Down,"20211004202802_c_up_date")
 }
 
 func (m *migrationCreatePowerTableInterface) Up() {
-	migration.Create("asd","20211004202802_c_up_date", func(table *migration.MigrationTable) {
+	migration.Create("asd",func(table *migration.MigrationTable) {
 		table.String("1").NullTable(false).Comment("s")
 		table.Timestamps().NullTable(false).Comment("s")
+		table.Charset("utf8")
+		table.Engine("InnoDB")
 		table.Done()
 	})
 }

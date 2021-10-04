@@ -6,11 +6,12 @@ type migrationCreateUserTableInterface struct {}
 
 func init() {
 	export := migrationCreateUserTableInterface{}
-	migration.RegisterMigration(export.Up,export.Down)
+	migration.RegisterMigration(export.Up,export.Down,"20211004202802_c_up_date1")
 }
 
 func (m *migrationCreateUserTableInterface) Up() {
-	migration.Create("asd1","20211004202802_c_up_date1", func(table *migration.MigrationTable) {
+	migration.DropIfExists("asd1")
+	migration.Create("asd1", func(table *migration.MigrationTable) {
 		table.String("555").NullTable(false).Comment("s")
 		table.String("qq").Comment("s")
 		table.Done()

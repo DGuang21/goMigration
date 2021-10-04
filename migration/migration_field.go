@@ -1,20 +1,20 @@
 package migration
 
 type MigrationAttributes struct {
-	field string
-	fieldType string
-	length int
-	precision int
-	defaultValue interface{}
-	canNull bool
-	comment string
+	field           string
+	fieldType       string
+	length          int
+	precision       int
+	defaultValue    interface{}
+	canNull         bool
+	comment         string
 	maintenanceTime bool
-	rename string
-	dropField []string
-	unique bool
-	references string
-	referencesOn string
-	isChange bool
+	rename          string
+	dropField       []string
+	unique          bool
+	references      string
+	referencesOn    string
+	isChange        bool
 }
 
 /**
@@ -24,10 +24,10 @@ type MigrationAttributes struct {
  * @param newField
  * @auth: daguang
  */
-func (m *MigrationTable) RenameField(field string,newField string) {
+func (m *MigrationTable) RenameField(field string, newField string) {
 	m.appendLastResult()
 	m.MigrationAttributes = &MigrationAttributes{
-		field:           field,
+		field:  field,
 		rename: newField,
 	}
 }
@@ -41,7 +41,7 @@ func (m *MigrationTable) RenameField(field string,newField string) {
 func (m *MigrationTable) DropField(fields ...string) {
 	m.appendLastResult()
 	m.MigrationAttributes = &MigrationAttributes{
-		dropField:  fields,
+		dropField: fields,
 	}
 }
 

@@ -3,6 +3,10 @@ package migration
 type MigrationTable struct {
 	*MigrationAttributes
 	result []*MigrationAttributes
+	tableName       string
+	engine          string
+	charset   		string
+	collation		string
 }
 
 /**
@@ -523,6 +527,18 @@ func (m *MigrationTable) String(field string,length ...int) *MigrationAttributes
 		length:          l,
 	}
 	return m.MigrationAttributes
+}
+
+func (m *MigrationTable) Engine(engine string) {
+	m.engine = engine
+}
+
+func (m *MigrationTable) Charset(charset string) {
+	m.charset = charset
+}
+
+func (m *MigrationTable) Collation(collation string) {
+	m.collation = collation
 }
 
 func (m *MigrationTable) Done() {

@@ -1,8 +1,9 @@
 package migration
 
 var (
-	upList = []func(){}
-	downList = []func(){}
+	upMap       = map[string]func(){}
+	downMap     = map[string]func(){}
+	versionList = []string{}
 )
 
 /**
@@ -11,22 +12,28 @@ var (
  * @param down
  * @auth: daguang
  */
-func RegisterMigration(up func(),down func()) {
-	upList = append(upList, up)
-	downList = append(downList, down)
+func RegisterMigration(up func(), down func(), version string) {
+	upMap[version] = up
+	downMap[version] = down
+	versionList = append(versionList, version)
 }
 
 // CleanMigration
 // Clean up funcs that are permanently up/down in memory
 // 清理在初始化时常驻在内存中的 up/down 方法
 func CleanMigration() {
-	upList = []func(){}
-	downList = []func(){}
+	upMap = nil
+	downMap = nil
+	versionList = nil
 }
 
 func Migrate(force ...bool) {
-	for _,v := range upList {
-		v()
+	// diff
+	for _, version := range versionList {
+		vFunc, ok := upMap[version]
+		if ok {
+			vFunc()
+		}
 	}
 }
 

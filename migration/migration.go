@@ -1,7 +1,5 @@
 package migration
 
-import "fmt"
-
 /**
  * @Description:
  * @param tableName
@@ -9,17 +7,15 @@ import "fmt"
  * @param fields
  * @auth: daguang
  */
-func Create(tableName string,version string,fields ...func(table *MigrationTable)) {
+func Create(tableName string, fields ...func(table *MigrationTable)) {
 	if tableName == "" {
 		panic("table can't be null")
 	}
 	if len(fields) > 0 {
-		for _,fieldFunc := range fields {
-			a := MigrationTable{nil,nil}
+		for _, fieldFunc := range fields {
+			a := MigrationTable{tableName: tableName}
 			fieldFunc(&a)
-			for _,vv := range a.result {
-				fmt.Printf("result: %+v\n",vv)
-			}
+			a.generateCreateMigrationSQL()
 		}
 	}
 }
@@ -44,20 +40,18 @@ func Drop(tableName string) {
  * @param fields
  * @auth: daguang
  */
-func UpdateTable(tableName string,version string,fields ...func(table *MigrationTable)) {
+func UpdateTable(tableName string, fields ...func(table *MigrationTable)) {
 	if tableName == "" {
 		panic("table can't be null")
 	}
 	if len(fields) > 0 {
-		for _,fieldFunc := range fields {
-			a := MigrationTable{nil,nil}
+		for _, fieldFunc := range fields {
+			a := MigrationTable{}
 			fieldFunc(&a)
-			//for _,vv := range a.result {
-			//}
 		}
 	}
 }
 
-func ReName(tableName string,newName string) {
+func ReName(tableName string, newName string) {
 
 }
