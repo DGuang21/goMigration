@@ -9,18 +9,14 @@ import "fmt"
  * @param fields
  * @auth: daguang
  */
-func CreateTable(tableName string,version string,fields ...func(table *MigrationTable)) {
+func Create(tableName string,version string,fields ...func(table *MigrationTable)) {
 	if tableName == "" {
 		panic("table can't be null")
 	}
-	fmt.Println(version)
 	if len(fields) > 0 {
 		for _,fieldFunc := range fields {
 			a := MigrationTable{nil,nil}
 			fieldFunc(&a)
-			for _,vv := range a.result {
-				fmt.Printf("111%+v\n",vv)
-			}
 		}
 	}
 }
@@ -31,6 +27,10 @@ func CreateTable(tableName string,version string,fields ...func(table *Migration
  * @auth: daguang
  */
 func DropIfExists(tableName string) {
+
+}
+
+func Drop(tableName string) {
 
 }
 
@@ -57,18 +57,6 @@ func UpdateTable(tableName string,version string,fields ...func(table *Migration
 	}
 }
 
-var (
-	upList = []func(){}
-	downList = []func(){}
-)
+func ReName(tableName string,newName string) {
 
-/**
- * @Description:
- * @param up
- * @param down
- * @auth: daguang
- */
-func RegisterMigration(up func(),down func()) {
-	upList = append(upList, up)
-	downList = append(downList, down)
 }
