@@ -25,7 +25,9 @@ func CleanMigration() {
 }
 
 func Migrate(force ...bool) {
-
+	for _,v := range upList {
+		v()
+	}
 }
 
 func RollBack(step ...int) {

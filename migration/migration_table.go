@@ -395,8 +395,7 @@ func (m *MigrationTable) timestampTz(field string) *MigrationAttributes {
 func (m *MigrationTable) Timestamps() *MigrationAttributes {
 	m.appendLastResult()
 	m.MigrationAttributes = &MigrationAttributes{
-		field:           "",
-		fieldType:       "timestampTz",
+		fieldType:       "timestamps",
 	}
 	return m.MigrationAttributes
 }

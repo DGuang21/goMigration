@@ -10,9 +10,9 @@ func init() {
 }
 
 func (m *migrationCreateUserTableInterface) Up() {
-	migration.Create("asd","20211004202802_c_up_date", func(table *migration.MigrationTable) {
-		table.String("1").NullTable(false).Comment("s")
-		table.Timestamps().Comment()
+	migration.Create("asd1","20211004202802_c_up_date1", func(table *migration.MigrationTable) {
+		table.String("555").NullTable(false).Comment("s")
+		table.String("qq").Comment("s")
 		table.Done()
 	})
 }

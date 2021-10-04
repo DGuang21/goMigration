@@ -14,10 +14,7 @@ func init() {
 func (m *migrationCreatePowerTableInterface) Up() {
 	migration.Create("asd","20211004202802_c_up_date", func(table *migration.MigrationTable) {
 		table.String("1").NullTable(false).Comment("s")
-		table.BigIncrements("2")
-		table.BigIncrements("3")
-		table.BigIncrements("4")
-		table.BigIncrements("5")
+		table.Timestamps().NullTable(false).Comment("s")
 		table.Done()
 	})
 }

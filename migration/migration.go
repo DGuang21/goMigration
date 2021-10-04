@@ -17,6 +17,9 @@ func Create(tableName string,version string,fields ...func(table *MigrationTable
 		for _,fieldFunc := range fields {
 			a := MigrationTable{nil,nil}
 			fieldFunc(&a)
+			for _,vv := range a.result {
+				fmt.Printf("result: %+v\n",vv)
+			}
 		}
 	}
 }
@@ -45,14 +48,12 @@ func UpdateTable(tableName string,version string,fields ...func(table *Migration
 	if tableName == "" {
 		panic("table can't be null")
 	}
-	fmt.Println(version)
 	if len(fields) > 0 {
 		for _,fieldFunc := range fields {
 			a := MigrationTable{nil,nil}
 			fieldFunc(&a)
-			for _,vv := range a.result {
-				fmt.Printf("111%+v\n",vv)
-			}
+			//for _,vv := range a.result {
+			//}
 		}
 	}
 }
