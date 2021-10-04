@@ -12,7 +12,7 @@ func init() {
 func (m *migrationCreateUserTableInterface) Up() {
 	migration.Create("asd","20211004202802_c_up_date", func(table *migration.MigrationTable) {
 		table.String("1").NullTable(false).Comment("s")
-		table.Timestamps()
+		table.Timestamps().Comment()
 		table.Done()
 	})
 }
