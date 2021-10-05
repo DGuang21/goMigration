@@ -12,9 +12,9 @@ var (
  * @param down
  * @auth: daguang
  */
-func RegisterMigration(up func(), down func(), version string) {
-	upMap[version] = up
-	downMap[version] = down
+func RegisterMigration(migrationFunc migrationer,version string) {
+	upMap[version] = migrationFunc.Up
+	downMap[version] = migrationFunc.Down
 	versionList = append(versionList, version)
 }
 

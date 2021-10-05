@@ -5,8 +5,7 @@ import "github.com/DGuang21/goMigration/migration"
 type migrationCreateUserTableInterface struct {}
 
 func init() {
-	export := migrationCreateUserTableInterface{}
-	migration.RegisterMigration(export.Up,export.Down,"20211004202802_c_up_date1")
+	migration.RegisterMigration(&migrationCreateUserTableInterface{},"20211004202802_c_up_date1")
 }
 
 func (m *migrationCreateUserTableInterface) Up() {

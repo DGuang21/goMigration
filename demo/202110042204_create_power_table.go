@@ -7,8 +7,7 @@ import (
 type migrationCreatePowerTableInterface struct {}
 
 func init() {
-	export := migrationCreatePowerTableInterface{}
-	migration.RegisterMigration(export.Up,export.Down,"20211004202802_c_up_date")
+	migration.RegisterMigration(&migrationCreatePowerTableInterface{},"20211004202802_c_up_date")
 }
 
 func (m *migrationCreatePowerTableInterface) Up() {

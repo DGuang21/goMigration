@@ -9,22 +9,23 @@ go get https://github.com/DGuang21/goMigration
 
 可通过 ``` gom gen create_c_user_table ``` 方法生成如下文件,在闭包函数中自由修改你所需的字段及方法
 ```
-type migrationCreateUserTableInterface struct {}
+type migrationCreatePowerTableInterface struct {}
 
 func init() {
-	export := migrationCreateUserTableInterface{}
-	migration.RegisterMigration(export.Up,export.Down)
+	migration.RegisterMigration(&migrationCreatePowerTableInterface{},"20211004202802_c_up_date")
 }
 
-func (m *migrationCreateUserTableInterface) Up() {
-	migration.Create("asd","20211004202802_c_up_date", func(table *migration.MigrationTable) {
+func (m *migrationCreatePowerTableInterface) Up() {
+	migration.Create("asd",func(table *migration.MigrationTable) {
 		table.String("1").NullTable(false).Comment("s")
-		table.Timestamps().Comment()
+		table.Timestamps().NullTable(false).Comment("s")
+		table.Charset("utf8")
+		table.Engine("InnoDB")
 		table.Done()
 	})
 }
 
-func (m *migrationCreateUserTableInterface) Down() {
+func (m *migrationCreatePowerTableInterface) Down() {
 	migration.DropIfExists("kos")
 }
 ```
