@@ -15,6 +15,8 @@ type MigrationAttributes struct {
 	references      string
 	referencesOn    string
 	isChange        bool
+	primaryKey      bool
+	autoIncrement   bool
 }
 
 /**

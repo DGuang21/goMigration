@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-const createTableRaw = `CREATE TABLE {{.tableName}}(
+const createTableRaw = `CREATE {{.temporary}} TABLE {{.tableName}}(
 {{.fields}}
 ) {{.engine}} {{.charset}};`
 
@@ -40,6 +40,13 @@ func (m *MigrationTable) generateCreateMigrationSQL() {
 	for _,v := range m.result {
 		fields = append(fields,m.generateCreateMigration(v))
 	}
+	//
+	temp := ""
+	if m.temporary {
+		temp = "temporary"
+	}
+	raw = strings.Replace(raw,"{{.temporary}}",temp,1)
+	//
 	raw = strings.Replace(raw,"{{.fields}}",strings.Join(fields,",\n"),1)
 	fmt.Println(raw)
 }
