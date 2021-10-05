@@ -9,11 +9,10 @@ package migration
  * @return *MigrationAttributes
  */
 func (m *MigrationTable) Binary(field string) *MigrationAttributes {
-	m.appendLastResult()
-	m.MigrationAttributes = &MigrationAttributes{
+	m.MigrationAttributes.result = append(m.result,&MigrationAttribute{
 		field:           field,
 		fieldType:       "BLOB",
-	}
+	})
 	return m.MigrationAttributes
 }
 
@@ -26,104 +25,94 @@ func (m *MigrationTable) Binary(field string) *MigrationAttributes {
  * @return *MigrationAttributes
  */
 func (m *MigrationTable) Char(field string,length ...int) *MigrationAttributes {
-	m.appendLastResult()
 	l := 0
 	if len(length) != 0 {
 		l = length[0]
 	}
-	m.MigrationAttributes = &MigrationAttributes{
+	m.MigrationAttributes.result = append(m.result,&MigrationAttribute{
 		field:           field,
 		fieldType:       "char",
 		length: l,
-	}
+	})
 	return m.MigrationAttributes
 }
 
 
 func (m *MigrationTable) Json(field string) *MigrationAttributes {
-	m.appendLastResult()
-	m.MigrationAttributes = &MigrationAttributes{
+	m.MigrationAttributes.result = append(m.result,&MigrationAttribute{
 		field:           field,
 		fieldType:       "JSON",
-	}
+	})
 	return m.MigrationAttributes
 }
 
 func (m *MigrationTable) Jsonb(field string) *MigrationAttributes {
-	m.appendLastResult()
-	m.MigrationAttributes = &MigrationAttributes{
+	m.MigrationAttributes.result = append(m.result,&MigrationAttribute{
 		field:           field,
 		fieldType:       "JSONB",
-	}
+	})
 	return m.MigrationAttributes
 }
 
 func (m *MigrationTable) LineString(field string) *MigrationAttributes {
-	m.appendLastResult()
-	m.MigrationAttributes = &MigrationAttributes{
+	m.MigrationAttributes.result = append(m.result,&MigrationAttribute{
 		field:           field,
 		fieldType:       "LINESTRING",
-	}
+	})
 	return m.MigrationAttributes
 }
 
 func (m *MigrationTable) LongText(field string) *MigrationAttributes {
-	m.appendLastResult()
-	m.MigrationAttributes = &MigrationAttributes{
+	m.MigrationAttributes.result = append(m.result,&MigrationAttribute{
 		field:           field,
 		fieldType:       "LONGTEXT",
-	}
+	})
 	return m.MigrationAttributes
 }
 
 
 func (m *MigrationTable) MediumText(field string) *MigrationAttributes {
-	m.appendLastResult()
-	m.MigrationAttributes = &MigrationAttributes{
+	m.MigrationAttributes.result = append(m.result,&MigrationAttribute{
 		field:           field,
 		fieldType:       "MEDIUMTEXT",
-	}
+	})
 	return m.MigrationAttributes
 }
 
 func (m *MigrationTable) MultiLineString(field string) *MigrationAttributes {
-	m.appendLastResult()
-	m.MigrationAttributes = &MigrationAttributes{
+	m.MigrationAttributes.result = append(m.result,&MigrationAttribute{
 		field:           field,
 		fieldType:       "MULTILINESTRING",
-	}
+	})
 	return m.MigrationAttributes
 }
 
 func (m *MigrationTable) Text(field string) *MigrationAttributes {
-	m.appendLastResult()
-	m.MigrationAttributes = &MigrationAttributes{
+	m.MigrationAttributes.result = append(m.result,&MigrationAttribute{
 		field:           field,
 		fieldType:       "TEXT",
-	}
+	})
 	return m.MigrationAttributes
 }
 
 func (m *MigrationTable) UUID(field string) *MigrationAttributes {
-	m.appendLastResult()
-	m.MigrationAttributes = &MigrationAttributes{
+	m.MigrationAttributes.result = append(m.result,&MigrationAttribute{
 		field:           field,
 		fieldType:       "uuid",
-	}
+	})
 	return m.MigrationAttributes
 }
 
 
 func (m *MigrationTable) String(field string,length ...int) *MigrationAttributes {
-	m.appendLastResult()
 	l := 0
 	if len(length) != 0 {
 		l = length[0]
 	}
-	m.MigrationAttributes = &MigrationAttributes{
+	m.MigrationAttributes.result = append(m.result,&MigrationAttribute{
 		field:           field,
 		fieldType:       "string",
 		length:          l,
-	}
+	})
 	return m.MigrationAttributes
 }

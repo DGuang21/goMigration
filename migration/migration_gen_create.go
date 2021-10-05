@@ -38,6 +38,13 @@ func (m *MigrationTable) generateCreateMigrationSQL() {
 	//
 	fields := []string{}
 	for _,v := range m.result {
+		if v.fieldType == "timestamps" {
+			v.field = "created_at"
+			v.fieldType = "timestamp"
+			v.canNull = true
+			fields = append(fields,m.generateCreateMigration(v))
+			v.field = "updated_at"
+		}
 		fields = append(fields,m.generateCreateMigration(v))
 	}
 	//
@@ -52,7 +59,7 @@ func (m *MigrationTable) generateCreateMigrationSQL() {
 }
 
 // 生成表中的字段
-func (m *MigrationTable) generateCreateMigration(t *MigrationAttributes) string {
+func (m *MigrationTable) generateCreateMigration(t *MigrationAttribute) string {
 	field := ""
 	// field name
 	field += "`"+t.field+"` "
@@ -68,6 +75,9 @@ func (m *MigrationTable) generateCreateMigration(t *MigrationAttributes) string 
 	// not null
 	if !t.canNull {
 		field += " NOT NULL "
+	}
+	if t.canNull {
+		field += " NULL "
 	}
 	return field
 }

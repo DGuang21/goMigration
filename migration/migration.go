@@ -13,7 +13,11 @@ func Create(tableName string, fields ...func(table *MigrationTable)) {
 	}
 	if len(fields) > 0 {
 		for _, fieldFunc := range fields {
-			a := MigrationTable{tableName: tableName}
+			a := MigrationTable{
+				MigrationAttributes: &MigrationAttributes{
+					tableName: tableName,
+				},
+			}
 			fieldFunc(&a)
 			a.generateCreateMigrationSQL()
 		}

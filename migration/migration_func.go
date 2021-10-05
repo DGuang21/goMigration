@@ -39,7 +39,7 @@ func CleanMigration() {
 
 // Migrate 运行迁移
 func Migrate(force ...bool) {
-	testConn()
+	//testConn()
 	// diff
 	for _, version := range versionList {
 		vFunc, ok := upMap[version]

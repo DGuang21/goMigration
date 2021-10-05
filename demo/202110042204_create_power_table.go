@@ -16,7 +16,6 @@ func (m *migrationCreatePowerTableInterface) Up() {
 		table.Timestamps().NullTable(false).Comment("s")
 		table.Charset("utf8")
 		table.Engine("InnoDB")
-		table.Done()
 	})
 }
 

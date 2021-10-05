@@ -1,6 +1,15 @@
 package migration
 
 type MigrationAttributes struct {
+	tableName       string
+	engine          string
+	charset   		string
+	collation		string
+	temporary		bool
+	result []*MigrationAttribute
+}
+
+type MigrationAttribute struct {
 	field           string
 	fieldType       string
 	length          int
@@ -28,11 +37,8 @@ type MigrationAttributes struct {
  * @auth: daguang
  */
 func (m *MigrationTable) RenameField(field string, newField string) {
-	m.appendLastResult()
-	m.MigrationAttributes = &MigrationAttributes{
-		field:  field,
-		rename: newField,
-	}
+	m.result[len(m.result)-1].field = field
+	m.result[len(m.result)-1].rename = newField
 }
 
 /**
@@ -42,19 +48,16 @@ func (m *MigrationTable) RenameField(field string, newField string) {
  * @auth: daguang
  */
 func (m *MigrationTable) DropField(fields ...string) {
-	m.appendLastResult()
-	m.MigrationAttributes = &MigrationAttributes{
-		dropField: fields,
-	}
+	m.result[len(m.result)-1].dropField = fields
 }
 
 func (m *MigrationAttributes) Default(d interface{}) *MigrationAttributes {
-	m.defaultValue = d
+	m.result[len(m.result)-1].defaultValue = d
 	return m
 }
 
 func (m *MigrationAttributes) NullTable(isNull bool) *MigrationAttributes {
-	m.canNull = isNull
+	m.result[len(m.result)-1].canNull = isNull
 	return m
 }
 
@@ -63,9 +66,9 @@ func (m *MigrationAttributes) Comment(c ...string) {
 	if len(c) != 0 {
 		comment = c[0]
 	}
-	m.comment = comment
+	m.result[len(m.result)-1].comment = comment
 }
 
 func (m *MigrationAttributes) Change() {
-	m.isChange = true
+	m.result[len(m.result)-1].isChange = true
 }

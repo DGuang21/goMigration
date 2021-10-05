@@ -8,14 +8,13 @@ package migration
  * @return *MigrationAttributes
  */
 func (m *MigrationTable) BigIncrements(field string) *MigrationAttributes {
-	m.appendLastResult()
-	m.MigrationAttributes = &MigrationAttributes{
+	m.MigrationAttributes.result = append(m.result,&MigrationAttribute{
 		field:         field,
 		fieldType:     "BIGINT",
 		primaryKey:    true,
 		autoIncrement: true,
 		unsigned:      true,
-	}
+	})
 	return m.MigrationAttributes
 }
 
@@ -27,14 +26,13 @@ func (m *MigrationTable) BigIncrements(field string) *MigrationAttributes {
  * @return *MigrationAttributes
  */
 func (m *MigrationTable) Increments(field string) *MigrationAttributes {
-	m.appendLastResult()
-	m.MigrationAttributes = &MigrationAttributes{
+	m.MigrationAttributes.result = append(m.result,&MigrationAttribute{
 		field:         field,
 		fieldType:     "INTEGER",
 		primaryKey:    true,
 		autoIncrement: true,
 		unsigned:      true,
-	}
+	})
 	return m.MigrationAttributes
 }
 
@@ -46,14 +44,13 @@ func (m *MigrationTable) Increments(field string) *MigrationAttributes {
  * @return *MigrationAttributes
  */
 func (m *MigrationTable) MediumIncrements(field string) *MigrationAttributes {
-	m.appendLastResult()
-	m.MigrationAttributes = &MigrationAttributes{
+	m.MigrationAttributes.result = append(m.result,&MigrationAttribute{
 		field:         field,
 		fieldType:     "MEDIUMINT",
 		primaryKey:    true,
 		autoIncrement: true,
 		unsigned:      true,
-	}
+	})
 	return m.MigrationAttributes
 }
 
@@ -65,13 +62,12 @@ func (m *MigrationTable) MediumIncrements(field string) *MigrationAttributes {
  * @return *MigrationAttributes
  */
 func (m *MigrationTable) SmallIncrements(field string) *MigrationAttributes {
-	m.appendLastResult()
-	m.MigrationAttributes = &MigrationAttributes{
+	m.MigrationAttributes.result = append(m.result,&MigrationAttribute{
 		field:         field,
 		fieldType:     "SMALLINT",
 		primaryKey:    true,
 		autoIncrement: true,
 		unsigned:      true,
-	}
+	})
 	return m.MigrationAttributes
 }
