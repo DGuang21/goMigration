@@ -4,7 +4,7 @@ func (m *MigrationTable) tinyInteger(field string) *MigrationAttributes {
 	m.appendLastResult()
 	m.MigrationAttributes = &MigrationAttributes{
 		field:           field,
-		fieldType:       "tinyInteger",
+		fieldType:       "TINYINT",
 	}
 	return m.MigrationAttributes
 }
@@ -18,20 +18,20 @@ func (m *MigrationTable) SmallInteger(field string) *MigrationAttributes {
 	return m.MigrationAttributes
 }
 
-func (m *MigrationTable) Integer(field string) *MigrationAttributes {
-	m.appendLastResult()
-	m.MigrationAttributes = &MigrationAttributes{
-		field:           field,
-		fieldType:       "INTEGER",
-	}
-	return m.MigrationAttributes
-}
-
 func (m *MigrationTable) MediumInteger(field string) *MigrationAttributes {
 	m.appendLastResult()
 	m.MigrationAttributes = &MigrationAttributes{
 		field:           field,
 		fieldType:       "MEDIUMINT",
+	}
+	return m.MigrationAttributes
+}
+
+func (m *MigrationTable) Integer(field string) *MigrationAttributes {
+	m.appendLastResult()
+	m.MigrationAttributes = &MigrationAttributes{
+		field:           field,
+		fieldType:       "INTEGER",
 	}
 	return m.MigrationAttributes
 }
@@ -102,12 +102,12 @@ func (m *MigrationTable) Float(field string,length int,precision int) *Migration
 	return m.MigrationAttributes
 }
 
-
 func (m *MigrationTable) unsignedBigInteger(field string) *MigrationAttributes {
 	m.appendLastResult()
 	m.MigrationAttributes = &MigrationAttributes{
 		field:           field,
-		fieldType:       "unsignedBigInteger",
+		fieldType:       "BIGINT",
+		unsigned: true,
 	}
 	return m.MigrationAttributes
 }
@@ -116,9 +116,10 @@ func (m *MigrationTable) unsignedDecimal(field string,length,precision int) *Mig
 	m.appendLastResult()
 	m.MigrationAttributes = &MigrationAttributes{
 		field:           field,
-		fieldType:       "unsignedBigInteger",
+		fieldType:       "DECIMAL",
 		length:     length,
 		precision: precision,
+		unsigned: true,
 	}
 	return m.MigrationAttributes
 }
@@ -127,7 +128,8 @@ func (m *MigrationTable) unsignedInteger(field string) *MigrationAttributes {
 	m.appendLastResult()
 	m.MigrationAttributes = &MigrationAttributes{
 		field:           field,
-		fieldType:       "unsignedInteger",
+		fieldType:       "INTEGER",
+		unsigned: true,
 	}
 	return m.MigrationAttributes
 }
@@ -136,7 +138,8 @@ func (m *MigrationTable) unsignedMediumInteger(field string) *MigrationAttribute
 	m.appendLastResult()
 	m.MigrationAttributes = &MigrationAttributes{
 		field:           field,
-		fieldType:       "unsignedMediumInteger",
+		fieldType:       "MEDIUMINT",
+		unsigned: true,
 	}
 	return m.MigrationAttributes
 }
@@ -145,7 +148,8 @@ func (m *MigrationTable) unsignedSmallInteger(field string) *MigrationAttributes
 	m.appendLastResult()
 	m.MigrationAttributes = &MigrationAttributes{
 		field:           field,
-		fieldType:       "unsignedSmallInteger",
+		fieldType:       "SMALLINT",
+		unsigned: true,
 	}
 	return m.MigrationAttributes
 }
@@ -154,7 +158,8 @@ func (m *MigrationTable) unsignedTinyInteger(field string) *MigrationAttributes 
 	m.appendLastResult()
 	m.MigrationAttributes = &MigrationAttributes{
 		field:           field,
-		fieldType:       "unsignedTinyInteger",
+		fieldType:       "TINYINT",
+		unsigned: true,
 	}
 	return m.MigrationAttributes
 }

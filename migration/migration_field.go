@@ -17,6 +17,7 @@ type MigrationAttributes struct {
 	isChange        bool
 	primaryKey      bool
 	autoIncrement   bool
+	unsigned		bool
 }
 
 /**

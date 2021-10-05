@@ -10,10 +10,11 @@ package migration
 func (m *MigrationTable) BigIncrements(field string) *MigrationAttributes {
 	m.appendLastResult()
 	m.MigrationAttributes = &MigrationAttributes{
-		field:           field,
-		fieldType:       "UNSIGNED BIG INTEGER",
-		primaryKey:      true,
-		autoIncrement:   true,
+		field:         field,
+		fieldType:     "BIGINT",
+		primaryKey:    true,
+		autoIncrement: true,
+		unsigned:      true,
 	}
 	return m.MigrationAttributes
 }
@@ -28,10 +29,11 @@ func (m *MigrationTable) BigIncrements(field string) *MigrationAttributes {
 func (m *MigrationTable) Increments(field string) *MigrationAttributes {
 	m.appendLastResult()
 	m.MigrationAttributes = &MigrationAttributes{
-		field:           field,
-		fieldType:       "UNSIGNED INTEGER",
-		primaryKey: true,
+		field:         field,
+		fieldType:     "INTEGER",
+		primaryKey:    true,
 		autoIncrement: true,
+		unsigned:      true,
 	}
 	return m.MigrationAttributes
 }
@@ -46,12 +48,14 @@ func (m *MigrationTable) Increments(field string) *MigrationAttributes {
 func (m *MigrationTable) MediumIncrements(field string) *MigrationAttributes {
 	m.appendLastResult()
 	m.MigrationAttributes = &MigrationAttributes{
-		field:           field,
-		fieldType:       "UNSIGNED MEDIUM INTEGER",
+		field:         field,
+		fieldType:     "MEDIUMINT",
+		primaryKey:    true,
+		autoIncrement: true,
+		unsigned:      true,
 	}
 	return m.MigrationAttributes
 }
-
 
 /**
  * @Description: 递增 ID (主键) ，相当于「UNSIGNED SMALL INTEGER」
@@ -63,10 +67,11 @@ func (m *MigrationTable) MediumIncrements(field string) *MigrationAttributes {
 func (m *MigrationTable) SmallIncrements(field string) *MigrationAttributes {
 	m.appendLastResult()
 	m.MigrationAttributes = &MigrationAttributes{
-		field:           field,
-		fieldType:       "UNSIGNED SMALL INTEGER",
-		primaryKey: true,
+		field:         field,
+		fieldType:     "SMALLINT",
+		primaryKey:    true,
 		autoIncrement: true,
+		unsigned:      true,
 	}
 	return m.MigrationAttributes
 }

@@ -46,16 +46,6 @@ func (m *MigrationTable) MultiPolygon(field string) *MigrationAttributes {
 	return m.MigrationAttributes
 }
 
-func (m *MigrationTable) NullableTimestamps(field string) *MigrationAttributes {
-	m.appendLastResult()
-	m.MigrationAttributes = &MigrationAttributes{
-		field:           field,
-		fieldType:       "timestamps",
-		canNull: true,
-	}
-	return m.MigrationAttributes
-}
-
 func (m *MigrationTable) Point(field string) *MigrationAttributes {
 	m.appendLastResult()
 	m.MigrationAttributes = &MigrationAttributes{
