@@ -13,6 +13,7 @@ func (m *migrationCreateUserTableInterface) Up() {
 	migration.Create("asd1", func(table *migration.MigrationTable) {
 		table.String("555").NullTable(false).Comment("s")
 		table.String("qq").Comment("s")
+		table.DropField("asd1")
 		table.Done()
 	})
 }

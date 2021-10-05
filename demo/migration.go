@@ -6,6 +6,10 @@ package main
 
 import "github.com/DGuang21/goMigration/migration"
 
+func init() {
+	migration.RegisterSqlDrive(nil)
+}
+
 /**
  * @Description: Run all pending migration files
  * @Description: 运行所有尚未完成的迁移文件
@@ -13,7 +17,7 @@ import "github.com/DGuang21/goMigration/migration"
  * @auth: daguang
  */
 func Migrate(force ...bool) {
-	migration.Migrate(true)
+	migration.Migrate(force...)
 }
 
 /**
@@ -22,7 +26,7 @@ func Migrate(force ...bool) {
  * @auth: daguang
  */
 func RollBack(step ...int) {
-
+	migration.RollBack(step...)
 }
 
 func RollBackAndMigrate(step ...int) {
