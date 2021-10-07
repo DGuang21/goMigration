@@ -9,7 +9,7 @@ package migration
  */
 func (m *MigrationTable) SoftDeletes() *MigrationAttributes {
 	m.MigrationAttributes.result = append(m.result,&MigrationAttribute{
-		field:           "delete_at",
+		field:           "deleted_at",
 		fieldType:       "timestamp",
 	})
 	return m.MigrationAttributes
