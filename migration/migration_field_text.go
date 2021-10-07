@@ -25,7 +25,7 @@ func (m *MigrationTable) Binary(field string) *MigrationAttributes {
  * @return *MigrationAttributes
  */
 func (m *MigrationTable) Char(field string,length ...int) *MigrationAttributes {
-	l := 0
+	l := 255
 	if len(length) != 0 {
 		l = length[0]
 	}
@@ -42,14 +42,6 @@ func (m *MigrationTable) Json(field string) *MigrationAttributes {
 	m.MigrationAttributes.result = append(m.result,&MigrationAttribute{
 		field:           field,
 		fieldType:       "JSON",
-	})
-	return m.MigrationAttributes
-}
-
-func (m *MigrationTable) Jsonb(field string) *MigrationAttributes {
-	m.MigrationAttributes.result = append(m.result,&MigrationAttribute{
-		field:           field,
-		fieldType:       "JSONB",
 	})
 	return m.MigrationAttributes
 }
@@ -95,17 +87,8 @@ func (m *MigrationTable) Text(field string) *MigrationAttributes {
 	return m.MigrationAttributes
 }
 
-func (m *MigrationTable) UUID(field string) *MigrationAttributes {
-	m.MigrationAttributes.result = append(m.result,&MigrationAttribute{
-		field:           field,
-		fieldType:       "uuid",
-	})
-	return m.MigrationAttributes
-}
-
-
 func (m *MigrationTable) String(field string,length ...int) *MigrationAttributes {
-	l := 0
+	l := 255
 	if len(length) != 0 {
 		l = length[0]
 	}

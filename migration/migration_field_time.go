@@ -23,14 +23,6 @@ func (m *MigrationTable) Time(field string) *MigrationAttributes {
 	return m.MigrationAttributes
 }
 
-func (m *MigrationTable) TimeTz(field string) *MigrationAttributes {
-	m.MigrationAttributes.result = append(m.result,&MigrationAttribute{
-		field:           field,
-		fieldType:       "timeTz",
-	})
-	return m.MigrationAttributes
-}
-
 func (m *MigrationTable) Timestamp(field string) *MigrationAttributes {
 	m.MigrationAttributes.result = append(m.result,&MigrationAttribute{
 		field:           field,
@@ -39,32 +31,10 @@ func (m *MigrationTable) Timestamp(field string) *MigrationAttributes {
 	return m.MigrationAttributes
 }
 
-func (m *MigrationTable) TimestampTz(field string) *MigrationAttributes {
-	m.MigrationAttributes.result = append(m.result,&MigrationAttribute{
-		field:           field,
-		fieldType:       "timestampTz",
-	})
-	return m.MigrationAttributes
-}
-
+// 生成可以由框架自动维护的 create_at 与 update_at
 func (m *MigrationTable) Timestamps() *MigrationAttributes {
 	m.MigrationAttributes.result = append(m.result,&MigrationAttribute{
 		fieldType:       "timestamps",
-	})
-	return m.MigrationAttributes
-}
-
-func (m *MigrationTable) TimestampsTz() *MigrationAttributes {
-	m.MigrationAttributes.result = append(m.result,&MigrationAttribute{
-		fieldType:       "timestampsTz",
-	})
-	return m.MigrationAttributes
-}
-
-func (m *MigrationTable) TinyIncrements(field string) *MigrationAttributes {
-	m.MigrationAttributes.result = append(m.result,&MigrationAttribute{
-		field:           field,
-		fieldType:       "tinyIncrements",
 	})
 	return m.MigrationAttributes
 }
@@ -90,14 +60,6 @@ func (m *MigrationTable) DateTime(field string) *MigrationAttributes {
 	m.MigrationAttributes.result = append(m.result,&MigrationAttribute{
 		field:           field,
 		fieldType:       "DATETIME",
-	})
-	return m.MigrationAttributes
-}
-
-func (m *MigrationTable) DateTimeTz(field string) *MigrationAttributes {
-	m.MigrationAttributes.result = append(m.result,&MigrationAttribute{
-		field:           field,
-		fieldType:       "timestamp",
 	})
 	return m.MigrationAttributes
 }

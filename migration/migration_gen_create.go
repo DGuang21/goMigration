@@ -2,6 +2,8 @@ package migration
 
 import (
 	"fmt"
+	"reflect"
+	"strconv"
 	"strings"
 )
 
@@ -17,7 +19,11 @@ var (
 		"string":"varchar",
 	}
 	// 需要带精度的类型
-	typePrecisionMap = map[string]string{}
+	typePrecisionMap = map[string]string{
+		"decimal":"decimal",
+		"float":"float",
+		"double":"double",
+	}
 )
 
 func (m *MigrationTable) generateCreateMigrationSQL() {
@@ -65,13 +71,25 @@ func (m *MigrationTable) generateCreateMigration(t *MigrationAttribute) string {
 	field += "`"+t.field+"` "
 	// type
 	fieldType := t.fieldType
+	t.fieldType = strings.ToLower(t.fieldType)
 	if k,ok := typeLenMap[t.fieldType];ok {
 		if t.length == 0 {
 			t.length = 255
 		}
 		fieldType = k + fmt.Sprintf("(%d)",t.length)
+	} else if k,ok := typePrecisionMap[t.fieldType];ok {
+		if t.precision < 1 {
+			t.precision = 0
+		}
+		if t.length < 1 {
+			t.length = 10
+		}
+		fieldType = k + fmt.Sprintf("(%d,%d)",t.length,t.precision)
 	}
 	field += fieldType
+	if t.unsigned {
+		field += " UNSIGNED "
+	}
 	// not null
 	if !t.canNull {
 		field += " NOT NULL "
@@ -79,5 +97,30 @@ func (m *MigrationTable) generateCreateMigration(t *MigrationAttribute) string {
 	if t.canNull {
 		field += " NULL "
 	}
+	if t.defaultValue != nil {
+		field += " " + defaultValue(t.defaultValue)
+	}
+	if t.comment != "" {
+		field += " comment '" + t.comment + "'"
+	}
 	return field
+}
+
+func defaultValue(d interface{}) string {
+	switch reflect.TypeOf(d).Kind() {
+	case reflect.String:
+		if d.(string) == "CURRENT_TIMESTAMP" {
+			return "DEFAULT CURRENT_TIMESTAMP"
+		}
+		return "DEFAULT '" + d.(string) + "'"
+	case reflect.Int:
+		return "DEFAULT " + strconv.FormatInt(int64(d.(int)),10)
+	case reflect.Bool:
+		if d.(bool) {
+			return "DEFAULT 0"
+		}
+		return "DEFAULT 1"
+	default:
+		return ""
+	}
 }

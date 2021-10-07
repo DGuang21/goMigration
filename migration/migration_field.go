@@ -56,6 +56,11 @@ func (m *MigrationAttributes) Default(d interface{}) *MigrationAttributes {
 	return m
 }
 
+func (m *MigrationAttributes) DefaultNow() *MigrationAttributes {
+	m.result[len(m.result)-1].defaultValue = "CURRENT_TIMESTAMP"
+	return m
+}
+
 func (m *MigrationAttributes) NullTable(isNull bool) *MigrationAttributes {
 	m.result[len(m.result)-1].canNull = isNull
 	return m

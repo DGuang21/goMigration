@@ -1,6 +1,6 @@
 package migration
 
-func (m *MigrationTable) tinyInteger(field string) *MigrationAttributes {
+func (m *MigrationTable) TinyInteger(field string) *MigrationAttributes {
 	m.MigrationAttributes.result = append(m.result,&MigrationAttribute{
 		field:           field,
 		fieldType:       "TINYINT",
@@ -93,7 +93,7 @@ func (m *MigrationTable) Float(field string,length int,precision int) *Migration
 	return m.MigrationAttributes
 }
 
-func (m *MigrationTable) unsignedBigInteger(field string) *MigrationAttributes {
+func (m *MigrationTable) UnsignedBigInteger(field string) *MigrationAttributes {
 	m.MigrationAttributes.result = append(m.result,&MigrationAttribute{
 		field:           field,
 		fieldType:       "BIGINT",
@@ -102,7 +102,7 @@ func (m *MigrationTable) unsignedBigInteger(field string) *MigrationAttributes {
 	return m.MigrationAttributes
 }
 
-func (m *MigrationTable) unsignedDecimal(field string,length,precision int) *MigrationAttributes {
+func (m *MigrationTable) UnsignedDecimal(field string,length,precision int) *MigrationAttributes {
 	m.MigrationAttributes.result = append(m.result,&MigrationAttribute{
 		field:           field,
 		fieldType:       "DECIMAL",
@@ -113,7 +113,7 @@ func (m *MigrationTable) unsignedDecimal(field string,length,precision int) *Mig
 	return m.MigrationAttributes
 }
 
-func (m *MigrationTable) unsignedInteger(field string) *MigrationAttributes {
+func (m *MigrationTable) UnsignedInteger(field string) *MigrationAttributes {
 	m.MigrationAttributes.result = append(m.result,&MigrationAttribute{
 		field:           field,
 		fieldType:       "INTEGER",
@@ -122,7 +122,7 @@ func (m *MigrationTable) unsignedInteger(field string) *MigrationAttributes {
 	return m.MigrationAttributes
 }
 
-func (m *MigrationTable) unsignedMediumInteger(field string) *MigrationAttributes {
+func (m *MigrationTable) UnsignedMediumInteger(field string) *MigrationAttributes {
 	m.MigrationAttributes.result = append(m.result,&MigrationAttribute{
 		field:           field,
 		fieldType:       "MEDIUMINT",
@@ -131,7 +131,7 @@ func (m *MigrationTable) unsignedMediumInteger(field string) *MigrationAttribute
 	return m.MigrationAttributes
 }
 
-func (m *MigrationTable) unsignedSmallInteger(field string) *MigrationAttributes {
+func (m *MigrationTable) UnsignedSmallInteger(field string) *MigrationAttributes {
 	m.MigrationAttributes.result = append(m.result,&MigrationAttribute{
 		field:           field,
 		fieldType:       "SMALLINT",
@@ -140,7 +140,7 @@ func (m *MigrationTable) unsignedSmallInteger(field string) *MigrationAttributes
 	return m.MigrationAttributes
 }
 
-func (m *MigrationTable) unsignedTinyInteger(field string) *MigrationAttributes {
+func (m *MigrationTable) UnsignedTinyInteger(field string) *MigrationAttributes {
 	m.MigrationAttributes.result = append(m.result,&MigrationAttribute{
 		field:           field,
 		fieldType:       "TINYINT",
