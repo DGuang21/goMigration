@@ -12,9 +12,11 @@ func init() {
 
 func (m *migrationCreatePowerTableInterface) Up() {
 	migration.Create("asd",func(table *migration.MigrationTable) {
+		table.BigIncrements("id")
+		table.Integer("if").PrimaryKey()
 		table.String("varchar").NullTable(false).Comment("s")
 		table.Timestamps().NullTable(false).Comment("s")
-		table.SoftDeletes()
+		table.SoftDeletes().Index("sofrtt")
 		table.Time("time").Default("1111").Comment("2222")
 		table.Timestamp("Timestamp").DefaultNow()
 		table.Year("Year")
@@ -45,6 +47,10 @@ func (m *migrationCreatePowerTableInterface) Up() {
 		table.String("stringss").Default("asdasd")
 		table.Charset("utf8")
 		table.Engine("InnoDB")
+		table.Unique("uniii","varchar","stringss","Double")
+		table.Index("indexxx","varchar","stringss","Double")
+		table.Geometry("localtion").Comment("hyytt")
+		table.SpatialIndex("local","localtion")
 	})
 }
 

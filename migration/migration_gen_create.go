@@ -43,6 +43,7 @@ func (m *MigrationTable) generateCreateMigrationSQL() {
 	raw = strings.Replace(raw,"{{.charset}}",charset,1)
 	//
 	fields := []string{}
+	primarys := []string{}
 	for _,v := range m.result {
 		if v.fieldType == "timestamps" {
 			v.field = "created_at"
@@ -52,6 +53,43 @@ func (m *MigrationTable) generateCreateMigrationSQL() {
 			v.field = "updated_at"
 		}
 		fields = append(fields,m.generateCreateMigration(v))
+		if v.primaryKey {
+			primarys = append(primarys,v.field)
+		}
+	}
+	// primary
+	if len(primarys) != 0 {
+		for k,v := range primarys {
+			primarys[k] = "`" + v + "`"
+		}
+		fields = append(fields,fmt.Sprintf("PRIMARY KEY(%v)",strings.Join(primarys,",")))
+	}
+	// unique
+	if len(m.uniqueName) != 0 && len(m.uniqueFields) != 0 {
+		for i := 0; i < len(m.uniqueFields); i++ {
+			for k,v := range m.uniqueFields[i] {
+				m.uniqueFields[i][k] = "`" + v + "`"
+			}
+			fields = append(fields,fmt.Sprintf("UNIQUE KEY `%v` (%v)  ",m.uniqueName[i],strings.Join(m.uniqueFields[i],",")))
+		}
+	}
+	// index
+	if len(m.indexName) != 0 && len(m.indexFields) != 0 {
+		for i:=0;i<len(m.indexFields);i ++ {
+			for k,v := range m.indexFields[i] {
+				m.indexFields[i][k] = "`" + v + "`"
+			}
+			fields = append(fields,fmt.Sprintf("KEY `%v` (%v)  ",m.indexName[i],strings.Join(m.indexFields[i],",")))
+		}
+	}
+	// spatial index
+	if len(m.spatialName) != 0 && len(m.spatialFields) != 0 {
+		for i:=0;i<len(m.spatialFields);i ++ {
+			for k,v := range m.spatialFields[i] {
+				m.spatialFields[i][k] = "`" + v + "`"
+			}
+			fields = append(fields,fmt.Sprintf("SPATIAL INDEX `%v` (%v)",m.spatialName[i],strings.Join(m.spatialFields[i],",")))
+		}
 	}
 	//
 	temp := ""
@@ -60,7 +98,8 @@ func (m *MigrationTable) generateCreateMigrationSQL() {
 	}
 	raw = strings.Replace(raw,"{{.temporary}}",temp,1)
 	//
-	raw = strings.Replace(raw,"{{.fields}}",strings.Join(fields,",\n"),1)
+	fieldRaw := strings.Join(fields,",\n")
+	raw = strings.Replace(raw,"{{.fields}}",fieldRaw,1)
 	fmt.Println(raw)
 }
 
@@ -102,6 +141,12 @@ func (m *MigrationTable) generateCreateMigration(t *MigrationAttribute) string {
 	}
 	if t.comment != "" {
 		field += " comment '" + t.comment + "'"
+	}
+	if t.autoIncrement {
+		field += " AUTO_INCREMENT "
+	}
+	if t.unique {
+		field += " UNIQUE"
 	}
 	return field
 }

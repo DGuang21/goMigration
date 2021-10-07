@@ -7,6 +7,12 @@ type MigrationAttributes struct {
 	collation		string
 	temporary		bool
 	result []*MigrationAttribute
+	uniqueName []string
+	uniqueFields [][]string
+	indexName []string
+	indexFields [][]string
+	spatialName []string
+	spatialFields [][]string
 }
 
 type MigrationAttribute struct {
@@ -27,6 +33,7 @@ type MigrationAttribute struct {
 	primaryKey      bool
 	autoIncrement   bool
 	unsigned		bool
+	index 			bool
 }
 
 /**
@@ -76,4 +83,10 @@ func (m *MigrationAttributes) Comment(c ...string) {
 
 func (m *MigrationAttributes) Change() {
 	m.result[len(m.result)-1].isChange = true
+}
+
+func (m *MigrationAttributes) Index(indexName string) *MigrationAttributes {
+	m.indexFields = append(m.indexFields,[]string{m.result[len(m.result)-1].field})
+	m.indexName = append(m.indexName,indexName)
+	return m
 }

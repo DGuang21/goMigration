@@ -71,3 +71,8 @@ func (m *MigrationTable) SmallIncrements(field string) *MigrationAttributes {
 	})
 	return m.MigrationAttributes
 }
+
+func (m *MigrationAttributes) PrimaryKey() *MigrationAttributes {
+	m.result[len(m.result)-1].primaryKey = true
+	return m
+}
