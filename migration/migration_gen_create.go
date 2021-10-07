@@ -91,7 +91,18 @@ func (m *MigrationTable) generateCreateMigrationSQL() {
 			fields = append(fields,fmt.Sprintf("SPATIAL INDEX `%v` (%v)",m.spatialName[i],strings.Join(m.spatialFields[i],",")))
 		}
 	}
-	//
+	// foreign
+	if m.foreign != nil && len(m.foreign.result) != 0 {
+		for _,v := range m.foreign.result {
+			fields = append(fields,fmt.Sprintf("foreign key (`%v`) references %v(`%v`)",v.key,v.referencesTable,v.referencesField))
+			if v.onUpdate {
+				fields[len(fields)-1] += " on update cascade "
+			}
+			if v.onDelete {
+				fields[len(fields)-1] += " on delete cascade "
+			}
+		}
+	}
 	temp := ""
 	if m.temporary {
 		temp = "temporary"

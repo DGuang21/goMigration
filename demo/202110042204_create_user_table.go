@@ -11,7 +11,7 @@ func init() {
 func (m *migrationCreateUserTableInterface) Up() {
 	migration.DropIfExists("asd1")
 	migration.Create("asd1", func(table *migration.MigrationTable) {
-		table.String("555").NullTable(false).Comment("s")
+		table.NullTable(false).Comment("s")
 		table.String("qq").Comment("s")
 		table.Timestamps()
 		table.Timestamp("end_time").Comment("asd")

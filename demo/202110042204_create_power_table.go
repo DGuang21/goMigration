@@ -51,6 +51,8 @@ func (m *migrationCreatePowerTableInterface) Up() {
 		table.Index("indexxx","varchar","stringss","Double")
 		table.Geometry("localtion").Comment("hyytt")
 		table.SpatialIndex("local","localtion")
+		table.Foreign("asdkey").References("asdtable","asdtt").OnDelete().OnUpdate()
+		table.Foreign("asdkey1").References("asdtable","asdtt").OnDelete().OnUpdate()
 	})
 }
 

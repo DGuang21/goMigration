@@ -1,6 +1,5 @@
 package migration
 
-
 /**
  * @Description: 相当于 BLOB
  * @receiver m

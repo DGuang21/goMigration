@@ -1,6 +1,5 @@
 package migration
 
-
 /**
  * @Description: 相当于为软删除添加一个可空的 deleted_at 字段
  * @receiver m

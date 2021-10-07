@@ -1,9 +1,5 @@
 package migration
 
-type MigrationTable struct {
-	*MigrationAttributes
-}
-
 func (m *MigrationTable) Geometry(field string) *MigrationAttributes {
 	m.MigrationAttributes.result = append(m.result,&MigrationAttribute{
 		field:           field,
