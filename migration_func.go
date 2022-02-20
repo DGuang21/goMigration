@@ -6,7 +6,7 @@ var (
 	upMap       = map[string]func(){}
 	downMap     = map[string]func(){}
 	versionList = []string{}
-	tx *sql.Tx
+	tx          *sql.Tx
 )
 
 func RegisterSqlDrive(t *sql.Tx) {
@@ -22,7 +22,7 @@ func testConn() {
 // RegisterMigration
 // All migration methods are registered with Slice during initialization
 // 初始化时将全部迁移的 UP/DOWN 方法添加到 slice 和对应的 map 中
-func RegisterMigration(migrationFunc migrationer,version string) {
+func RegisterMigration(migrationFunc migrationer, version string) {
 	upMap[version] = migrationFunc.Up
 	downMap[version] = migrationFunc.Down
 	versionList = append(versionList, version)

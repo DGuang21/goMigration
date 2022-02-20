@@ -7,58 +7,57 @@ package migration
  * @return *MigrationAttributes
  */
 func (m *MigrationTable) SoftDeletes() *MigrationAttributes {
-	m.table.result = append(m.table.result,&MigrationAttribute{
-		field:           "deleted_at",
-		fieldType:       "timestamp",
+	m.table.result = append(m.table.result, &MigrationAttribute{
+		field:     "deleted_at",
+		fieldType: "timestamp",
 	})
 	return m.table
 }
 
 func (m *MigrationTable) Time(field string) *MigrationAttributes {
-	m.table.result = append(m.table.result,&MigrationAttribute{
-		field:           field,
-		fieldType:       "TIME",
+	m.table.result = append(m.table.result, &MigrationAttribute{
+		field:     field,
+		fieldType: "TIME",
 	})
 	return m.table
 }
 
 func (m *MigrationTable) Timestamp(field string) *MigrationAttributes {
-	m.table.result = append(m.table.result,&MigrationAttribute{
-		field:           field,
-		fieldType:       "timestamp",
+	m.table.result = append(m.table.result, &MigrationAttribute{
+		field:     field,
+		fieldType: "timestamp",
 	})
 	return m.table
 }
 
 // 生成可以由框架自动维护的 create_at 与 update_at
 func (m *MigrationTable) Timestamps() *MigrationAttributes {
-	m.table.result = append(m.table.result,&MigrationAttribute{
-		fieldType:       "timestamps",
+	m.table.result = append(m.table.result, &MigrationAttribute{
+		fieldType: "timestamps",
 	})
 	return m.table
 }
 
 func (m *MigrationTable) Year(field string) *MigrationAttributes {
-	m.table.result = append(m.table.result,&MigrationAttribute{
-		field:           field,
-		fieldType:       "year",
+	m.table.result = append(m.table.result, &MigrationAttribute{
+		field:     field,
+		fieldType: "year",
 	})
 	return m.table
 }
 
-
 func (m *MigrationTable) Date(field string) *MigrationAttributes {
-	m.table.result = append(m.table.result,&MigrationAttribute{
-		field:           field,
-		fieldType:       "DATE",
+	m.table.result = append(m.table.result, &MigrationAttribute{
+		field:     field,
+		fieldType: "DATE",
 	})
 	return m.table
 }
 
 func (m *MigrationTable) DateTime(field string) *MigrationAttributes {
-	m.table.result = append(m.table.result,&MigrationAttribute{
-		field:           field,
-		fieldType:       "DATETIME",
+	m.table.result = append(m.table.result, &MigrationAttribute{
+		field:     field,
+		fieldType: "DATETIME",
 	})
 	return m.table
 }

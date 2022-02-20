@@ -1,5 +1,11 @@
 package migration
 
+type migration struct{}
+
+var (
+	Migration = migration{}
+)
+
 /**
  * @Description:
  * @param tableName
@@ -7,7 +13,7 @@ package migration
  * @param fields
  * @auth: daguang
  */
-func Create(tableName string, fields ...func(table *MigrationTable)) {
+func (m *migration) Create(tableName string, fields ...func(table *MigrationTable)) {
 	if tableName == "" {
 		panic("table can't be null")
 	}
@@ -15,7 +21,7 @@ func Create(tableName string, fields ...func(table *MigrationTable)) {
 		for _, fieldFunc := range fields {
 			a := MigrationTable{
 				table: &MigrationAttributes{
-					tableName:     tableName,
+					tableName: tableName,
 				},
 			}
 			fieldFunc(&a)
@@ -29,11 +35,11 @@ func Create(tableName string, fields ...func(table *MigrationTable)) {
  * @param tableName
  * @auth: daguang
  */
-func DropIfExists(tableName string) {
+func (m *migration) DropIfExists(tableName string) {
 
 }
 
-func Drop(tableName string) {
+func (m *migration) Drop(tableName string) {
 
 }
 
@@ -44,7 +50,7 @@ func Drop(tableName string) {
  * @param fields
  * @auth: daguang
  */
-func UpdateTable(tableName string, fields ...func(table *MigrationTable)) {
+func (m *migration) UpdateTable(tableName string, fields ...func(table *MigrationTable)) {
 	if tableName == "" {
 		panic("table can't be null")
 	}
@@ -56,6 +62,6 @@ func UpdateTable(tableName string, fields ...func(table *MigrationTable)) {
 	}
 }
 
-func ReName(tableName string, newName string) {
+func (m *migration) ReName(tableName string, newName string) {
 
 }

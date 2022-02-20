@@ -1,27 +1,25 @@
 package migration
 
 type migrationer interface {
-
 	Up()
 
 	Down()
-
 }
 
 type MigrationAttributes struct {
-	tableName       string
-	engine          string
-	charset   		string
-	collation		string
-	temporary		bool
-	result []*MigrationAttribute
-	uniqueName []string
-	uniqueFields [][]string
-	indexName []string
-	indexFields [][]string
-	spatialName []string
+	tableName     string
+	engine        string
+	charset       string
+	collation     string
+	temporary     bool
+	result        []*MigrationAttribute
+	uniqueName    []string
+	uniqueFields  [][]string
+	indexName     []string
+	indexFields   [][]string
+	spatialName   []string
 	spatialFields [][]string
-	foreign *ForeignAttributes
+	foreign       *ForeignAttributes
 }
 
 type ForeignAttributes struct {
@@ -29,11 +27,11 @@ type ForeignAttributes struct {
 }
 
 type foreignAttribute struct {
-	key string
+	key             string
 	referencesTable string
 	referencesField string
-	onUpdate bool
-	onDelete bool
+	onUpdate        bool
+	onDelete        bool
 }
 
 type MigrationAttribute struct {
@@ -53,8 +51,8 @@ type MigrationAttribute struct {
 	isChange        bool
 	primaryKey      bool
 	autoIncrement   bool
-	unsigned		bool
-	index 			bool
+	unsigned        bool
+	index           bool
 }
 
 type MigrationForegion struct {

@@ -63,7 +63,7 @@ func (m *MigrationAttributes) Change() {
 
 // Index 添加一个单独的 index
 func (m *MigrationAttributes) Index(indexName string) *MigrationAttributes {
-	m.indexFields = append(m.indexFields,[]string{m.result[len(m.result)-1].field})
-	m.indexName = append(m.indexName,indexName)
+	m.indexFields = append(m.indexFields, []string{m.result[len(m.result)-1].field})
+	m.indexName = append(m.indexName, indexName)
 	return m
 }

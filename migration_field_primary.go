@@ -8,7 +8,7 @@ package migration
  * @return *MigrationAttributes
  */
 func (m *MigrationTable) BigIncrements(field string) *MigrationAttributes {
-	m.table.result = append(m.table.result,&MigrationAttribute{
+	m.table.result = append(m.table.result, &MigrationAttribute{
 		field:         field,
 		fieldType:     "BIGINT",
 		primaryKey:    true,
@@ -26,7 +26,7 @@ func (m *MigrationTable) BigIncrements(field string) *MigrationAttributes {
  * @return *MigrationAttributes
  */
 func (m *MigrationTable) Increments(field string) *MigrationAttributes {
-	m.table.result = append(m.table.result,&MigrationAttribute{
+	m.table.result = append(m.table.result, &MigrationAttribute{
 		field:         field,
 		fieldType:     "INTEGER",
 		primaryKey:    true,
@@ -44,7 +44,7 @@ func (m *MigrationTable) Increments(field string) *MigrationAttributes {
  * @return *MigrationAttributes
  */
 func (m *MigrationTable) MediumIncrements(field string) *MigrationAttributes {
-	m.table.result = append(m.table.result,&MigrationAttribute{
+	m.table.result = append(m.table.result, &MigrationAttribute{
 		field:         field,
 		fieldType:     "MEDIUMINT",
 		primaryKey:    true,
@@ -62,7 +62,7 @@ func (m *MigrationTable) MediumIncrements(field string) *MigrationAttributes {
  * @return *MigrationAttributes
  */
 func (m *MigrationTable) SmallIncrements(field string) *MigrationAttributes {
-	m.table.result = append(m.table.result,&MigrationAttribute{
+	m.table.result = append(m.table.result, &MigrationAttribute{
 		field:         field,
 		fieldType:     "SMALLINT",
 		primaryKey:    true,
